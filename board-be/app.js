@@ -31,13 +31,25 @@ db.all("PRAGMA table_info(messages)", [], (err, rows) => {
 });
 
 //create table
-db.run(`CREATE TABLE IF NOT EXISTS messages (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  content TEXT NOT NULL,
-  user TEXT,
-  created_at DATETIME DEFAULT (datetime(CURRENT_TIMESTAMP, '+8 hours'))
-)`);
-
+db.run(`DROP TABLE IF EXISTS messages`, (err) => {
+  if (err) {
+    console.error("Error dropping table:", err);
+  } else {
+    console.log("Dropped messages table if it existed");
+    db.run(`CREATE TABLE messages (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      content TEXT NOT NULL,
+      user TEXT,
+      created_at DATETIME DEFAULT (datetime(CURRENT_TIMESTAMP, '+8 hours'))
+    )`, (err) => {
+      if (err) {
+        console.error("Error creating table:", err);
+      } else {
+        console.log("Created messages table with updated structure");
+      }
+    });
+  }
+});
 //retrieve messages
 app.get('/messages', (req, res) => {
   db.all('SELECT * FROM messages ORDER BY created_at DESC', [], (err, rows) => {
