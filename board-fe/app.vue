@@ -1,8 +1,8 @@
 <template>
-  <div class="app">
+  <NuxtLayout name="terminal">
     <Welcome v-if="!currentUser" @userRegistered="handleUserRegistration" />
-    <Board v-else :currentUser="currentUser" />
-  </div>
+    <Board v-else :currentUser="currentUser" @update-nickname="updateNickname" />
+  </NuxtLayout>
 </template>
 
 <script setup>

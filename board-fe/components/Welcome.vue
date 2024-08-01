@@ -1,5 +1,5 @@
 <template>
-  <div class="terminal">
+  <div class="welcome-terminal">
     <div class="terminal-output">
       <p>Welcome to the Anonymous Message Board</p>
       <p>Please enter a nickname to continue:</p>
