@@ -1,0 +1,25 @@
+.message-board {
+  padding: 1rem;
+
+  .message {
+    margin-bottom: 0.5rem;
+
+    .timestamp {
+      color: #888;
+      margin-right: 0.5rem;
+    }
+
+    .username {
+      font-weight: bold;
+      margin-right: 0.5rem;
+
+      &.system {
+        color: #ff0000;
+      }
+    }
+
+    .content {
+      word-break: break-word;
+    }
+  }
+}
